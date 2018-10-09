@@ -41,10 +41,6 @@
         </plugin>
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <fork>true</fork>
-            <executable>C:\Program Files\Java\jdk1.8.0_161</executable>
-          </configuration>
           <version>3.7.0</version>
         </plugin>
         <plugin>
