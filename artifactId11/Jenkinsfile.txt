@@ -11,10 +11,8 @@ pipeline
            stage('Build')    {
                                steps {
                                       echo 'In build'
-                                      withMaven(maven :'maven-3.5.0') 
-                                     {
-                                      sh 'mvn compile'
-                                     }
+                                      mvn clean
+                                     
 				      
                                      }
                              }
