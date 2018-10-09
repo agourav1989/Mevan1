@@ -13,7 +13,7 @@ pipeline
                                       echo 'In build'
                                       withMaven( maven: 'Maven12') 
                                      {
-                                      bat 'mvn clean package'
+                                      bat 'mvn clean'
                                      }
                                      
 				      
