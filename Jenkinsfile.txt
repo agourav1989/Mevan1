@@ -4,7 +4,7 @@ pipeline
   stages {
            stage('Checkout') {
                                steps {
-                                      echo 'In checkout'
+                                      echo 'In checkout1'
                                      }
                              }
 
@@ -13,7 +13,7 @@ pipeline
                                       echo 'In build'
                                       withMaven(tool name: 'Maven12', type:'maven') 
                                      {
-                                      sh 'mvn clean package'
+                                      bat 'mvn clean package'
                                      }
                                      
 				      
