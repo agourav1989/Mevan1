@@ -1,0 +1,60 @@
+pipeline 
+{
+  agent any
+  stages {
+           stage('Checkout') {
+                               steps {
+                                      echo 'In checkout'
+                                     }
+                             }
+
+           stage('Build')    {
+                               steps {
+                                      echo 'In build'
+                                      withMaven(maven :'maven-3.5.0') 
+                                     {
+                                      sh 'mvn compile'
+                                     }
+				      
+                                     }
+                             }
+
+           stage('Unit testing')    {
+                               steps {
+                                      echo 'In Unit testing'
+                                     }
+                             }
+
+           stage('Sonar Analysis')    {
+                               steps {
+                                      echo 'In Sonar Analysis'
+                                     }
+                             }
+
+           stage('Release App Artifactory')    {
+                               steps {
+                                      echo 'In Release App Artifactory'
+                                     }
+                             }
+
+           stage('Build Docker Image')    {
+                               steps {
+                                      echo 'In Build Docker Image'
+                                     }
+                             }
+
+           stage('ECS Deployment')    {
+                               steps {
+                                      echo 'In ECS Deployment'
+                                     }
+                             }
+
+           stage('Open Needed Ports')    {
+                               steps {
+                                      echo 'Open Needed Ports'
+                                     }
+                             }
+     
+                             
+         }
+}
