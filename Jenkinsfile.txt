@@ -39,7 +39,7 @@ pipeline
  				      }
                                      }
                              }
-           stage('Quality gate check') { 
+           stage("Quality gate check") { 
 	                                timeout(time:1, unit = 'Hours')
 					{  
 					   def gg = waitForQualityGate()
