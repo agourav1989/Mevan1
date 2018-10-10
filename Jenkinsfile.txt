@@ -40,6 +40,7 @@ pipeline
                                      }
                              }
            stage("Quality gate check") { 
+	                      steps {
 	                                timeout(time:1, unit = 'Hours')
 					{  
 					   def gg = waitForQualityGate()
@@ -49,7 +50,7 @@ pipeline
 					
 					}
 	   
-	                               }
+	                             }  }
 
            stage('Release App Artifactory')    {
                                steps {
