@@ -13,7 +13,7 @@ pipeline
                                       echo 'In build'
                                       withMaven( maven: 'Maven12') 
                                      {
-                                      bat 'mvn clean compile test-compile test install'
+                                      bat 'mvn clean compile'
                                      }
                                      
 				      
@@ -23,6 +23,10 @@ pipeline
            stage('Unit testing')    {
                                steps {
                                       echo 'In Unit testing'
+                                      withMaven( maven: 'Maven12') 
+                                     {
+                                      bat 'test-compile test'
+                                     }
                                      }
                              }
 
