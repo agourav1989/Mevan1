@@ -39,6 +39,17 @@ pipeline
  				      }
                                      }
                              }
+           stage('Quality gate check') { 
+	                                timeout(time:1, unit = 'Hours')
+					{  
+					   def gg = waitForQualityGate()
+					   if (gg.status != 'OK')
+					     { error 'Pipeline aborted due to failure : ${gg.status}'
+					     }
+					
+					}
+	   
+	                               }
 
            stage('Release App Artifactory')    {
                                steps {
