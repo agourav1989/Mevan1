@@ -35,7 +35,7 @@ pipeline
                                       echo 'In Sonar Analysis'
 				      withSonarQubeEnv('MySonar-Server')
 				      {
-				      bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
+				      bat 'mvn sonar:sonar'
  				      }
                                      }
                              }
