@@ -13,7 +13,7 @@ pipeline
                                       echo 'In build'
                                       withMaven( maven: 'Maven12') 
                                      {
-                                      bat 'mvn clean compile'
+                                      bat 'mvn clean install'
                                      }
                                      
 				      
@@ -51,7 +51,7 @@ pipeline
                                steps {
                                       echo 'In Release App Artifactory'
 				      def server = Artifactory.server Artifactory-server
-		         	      archiveArtifacts 'target/artifactId11-1.0-SNAPSHOT.jar' 
+		         	      archiveArtifacts 'target/*.jar' 
                                      }
                              }
 
