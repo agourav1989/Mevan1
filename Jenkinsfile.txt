@@ -50,7 +50,7 @@ pipeline
            stage('Release App Artifactory')    {
                                steps {
                                       echo 'In Release App Artifactory'
-		         	      archiveArtifacts 'target/*.jar' 
+		         	      archiveArtifacts 'target/artifactId11-1.0-SNAPSHOT.jar' 
                                      }
                              }
 
