@@ -1,17 +1,7 @@
 pipeline 
 {
   agent any
-  environment {
-               server = Artifactory.server('Artifactory-server')              
-               uploadSpec = """{
-                                     "files": [
-    					    {
-                                             "pattern": "target/*.jar",
-                                             "target": "example-repo-local/firstjar"
-                                             }
-                                              ]
-                              }"""
-	    }			  
+	  
 
   stages {
            stage('Checkout') {
@@ -64,7 +54,18 @@ pipeline
                                       echo 'In Release App Artifactory'
 				      script 
 				      {
-				      server.upload(uploadSpec)
+ 
+                                          def server = Artifactory.server('Artifactory-server')              
+                                          def uploadSpec = """{
+                                                                 "files": [
+    					                               {
+                                                                         "pattern": "target/*.jar",
+                                                                         "target": "example-repo-local/firstjar"
+                                                                       }
+                                                                          ]
+                                                              }"""
+			      
+				                              server.upload(uploadSpec)
 				      }
 
                                      }
