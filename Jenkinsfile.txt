@@ -64,7 +64,7 @@ pipeline
                                       echo 'In Release App Artifactory'
 				      script 
 				      {
-				      server.upload(uploadSpec)
+				      server.artifactoryUpload(uploadSpec)
 				      }
 
                                      }
