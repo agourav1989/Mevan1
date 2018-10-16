@@ -4,6 +4,14 @@ pipeline
   environment {
                server = Artifactory.server('Artifactory-server')
               }
+              def uploadSpec = """{
+                                     "files": [
+    					    {
+                                             "pattern": "target/*.jar",
+                                             "target": "bazinga-repo/froggy-files"
+                                             }
+                                              ]
+                                  }"""
 
   stages {
            stage('Checkout') {
