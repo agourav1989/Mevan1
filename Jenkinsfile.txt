@@ -50,19 +50,8 @@ pipeline
            stage('Release App Artifactory')    {
                                steps {
                                       echo 'In Release App Artifactory'
-				      step {
 				      def server = Artifactory.server('Artifactory-server')
-				      }
-				  
-				      def uploadSpec = """{
-                                                            "files": [
-    								      {
-                                                                        "pattern": "target/*.jar",
-                                                                        "target": "bazinga-repo/froggy-files"
-                                                                      }
-                                                                     ]
-                                                          }"""
-                                      server.upload(uploadSpec)
+
                                      }
                              }
 
