@@ -50,8 +50,17 @@ pipeline
            stage('Release App Artifactory')    {
                                steps {
                                       echo 'In Release App Artifactory'
-				      mvn deploy
-		         	      archiveArtifacts 'target/*.jar' 
+				      def server = Artifactory.server('Artifactory-server')
+				      server bypassProxy = true
+				      def uploadSpec = """{
+                                                            "files": [
+    								      {
+                                                                        "pattern": "target/*.jar",
+                                                                        "target": "bazinga-repo/froggy-files"
+                                                                      }
+                                                                     ]
+                                                          }"""
+                                                          server.upload(uploadSpec)
                                      }
                              }
 
