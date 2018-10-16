@@ -33,10 +33,10 @@ pipeline
            stage('Sonar Analysis')    {
                                steps {
                                       echo 'In Sonar Analysis'
-				      withSonarQubeEnv('MySonar-Server')
-				      {
+				      
+				      
 				      bat 'mvn sonar:sonar'
- 				      }
+ 				      
                                      }
                              }
 	  stage("Quality Gate") {
