@@ -7,7 +7,7 @@ pipeline
                                      "files": [
     					    {
                                              "pattern": "target/*.jar",
-                                             "target": "bazinga-repo/froggy-files"
+                                             "target": "example-repo-local/firstjar"
                                              }
                                               ]
                               }"""
