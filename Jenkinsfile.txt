@@ -1,9 +1,7 @@
 pipeline 
 {
   agent any
-      environment {
-         server = Artifactory.server('Artifactory-server')
-                  }
+
   stages {
            stage('Checkout') {
                                steps {
@@ -53,6 +51,9 @@ pipeline
            stage('Release App Artifactory')    {
                                steps {
                                       echo 'In Release App Artifactory'
+				            environment {
+                                                          server = Artifactory.server('Artifactory-server')
+                                                        }
 				     
 
                                      }
