@@ -25,7 +25,7 @@ pipeline
                                       echo 'In build'
                                       withMaven( maven: 'Maven12') 
                                      {
-                                      bat 'mvn clean install '
+                                      bat 'mvn clean install deploy'
                                      }
                                      
 				      
