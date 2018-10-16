@@ -33,10 +33,10 @@ pipeline
            stage('Sonar Analysis')    {
                                steps {
                                       echo 'In Sonar Analysis'
-				      
-				      
+				      withSonarQubeEnv('MySonar-Server')
+				      {
 				      bat 'mvn sonar:sonar'
- 				      
+ 				      }
                                      }
                              }
 	  stage("Quality Gate") {
@@ -50,8 +50,10 @@ pipeline
            stage('Release App Artifactory')    {
                                steps {
                                       echo 'In Release App Artifactory'
+				      step {
 				      def server = Artifactory.server('Artifactory-server')
-				      server bypassProxy = true
+				      }
+				  
 				      def uploadSpec = """{
                                                             "files": [
     								      {
@@ -60,7 +62,7 @@ pipeline
                                                                       }
                                                                      ]
                                                           }"""
-                                                          server.upload(uploadSpec)
+                                      server.upload(uploadSpec)
                                      }
                              }
 
