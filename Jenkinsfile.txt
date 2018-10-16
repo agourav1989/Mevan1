@@ -50,7 +50,7 @@ pipeline
            stage('Release App Artifactory')    {
                                steps {
                                       echo 'In Release App Artifactory'
-				      def server = Artifactory.server('Artifactory-server')
+				      def server = Artifactory.server(Artifactory-server)
 
                                      }
                              }
