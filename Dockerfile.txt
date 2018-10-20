@@ -1,0 +1,4 @@
+FROM openjdk:8
+ADD target/devopssampleapplication.war devopssampleapplication.war
+EXPOSE 8085
+ENTRYPOINT ["java", "-war", "devopssampleapplication.war"]
