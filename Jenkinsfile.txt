@@ -72,6 +72,9 @@ pipeline
                              }
 
            stage('Build Docker Image')    {
+	                       agent {
+			                dockerfile true
+			             }
                                steps {
                                       echo 'In Build Docker Image'
                                      }
