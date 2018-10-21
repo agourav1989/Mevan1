@@ -1,4 +1,4 @@
 FROM openjdk:8
-ADD target/devopssampleapplication.war devopssampleapplication.war
+ADD target/artifactId11-1.0-SNAPSHOT.jar artifactId11-1.0-SNAPSHOT.jar
 EXPOSE 8085
-ENTRYPOINT ["java", "-jar", "devopssampleapplication.war"]
+ENTRYPOINT ["java", "-jar", "artifactId11-1.0-SNAPSHOT.jar"]
