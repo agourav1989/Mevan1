@@ -49,27 +49,7 @@ pipeline
                                 }
                                }
 
-           stage('Release App Artifactory')    {
-                               steps {
-                                      echo 'In Release App Artifactory'
-				      script 
-				      {
- 
-                                          def server = Artifactory.server('Artifactory-server')              
-                                          def uploadSpec = """{
-                                                                 "files": [
-    					                               {
-                                                                         "pattern": "target/*.jar",
-                                                                         "target": "example-repo-local/firstjar"
-                                                                       }
-                                                                          ]
-                                                              }"""
-			      
-				                              server.upload(uploadSpec)
-				      }
 
-                                     }
-                             }
 
            stage('Build Docker Image')    {
 	                       agent {
