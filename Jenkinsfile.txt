@@ -71,15 +71,17 @@ pipeline
                                      }
                              }
 
-           stage('Build Docker Image')    {
+          stage('Build Docker Image')    {
 	                       agent {
-			                docker {  image 'openjdk:8'
-					       }
+			                docker { 
+                                          image 'openjdk:8'
+                                               }
 			             }
                                steps {
-                                      echo 'In Build Docker Image'
+                                      bat 'docker --version'
+
                                      }
-                             }
+                                          }
 
 
            stage('ECS Deployment')    {
