@@ -81,7 +81,7 @@ pipeline
                bat 'docker push 572393830386.dkr.ecr.ap-south-1.amazonaws.com/docker1'
 				       
 				        
-              } 
+              }  }
 
            stage('Open Needed Ports')    {
                                steps {
