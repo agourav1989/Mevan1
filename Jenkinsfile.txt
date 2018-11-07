@@ -76,9 +76,9 @@ pipeline
                                            steps {
                                                    echo 'In Build Docker Image'
 				                   bat 'docker build -t docker1 .'  
-				bat 'docker tag docker1 572393830386.dkr.ecr.ap-south-1.amazonaws.com/docker1
+				       bat 'docker tag docker1 572393830386.dkr.ecr.ap-south-1.amazonaws.com/docker1'
 						   }
-                                          }
+                                          } 
 
 
 
