@@ -75,7 +75,7 @@ pipeline
                                                                                   
                                            steps {
                                                    echo 'In Build Docker Image'
-                                                   bat 'docker build -t webserver .'
+                                                   docker.build('docker1')
                                             
                                                  }
                                           }
@@ -83,8 +83,10 @@ pipeline
            stage('ECS Deployment')    {
                                steps {
                                       echo 'In ECS Deployment'
-                                     }
-                             }
+			docker.withRegistry('https://572393830386.dkr.ecr.ap-south-1.amazonaws.com', 'ecr:ap-south-1:dbd7ec62-521a-4f93-9a02-debe363d7ba1')                          {
+                                   docker.image('docker1').push('latest')   
+                         }
+                                     } }
 
            stage('Open Needed Ports')    {
                                steps {
