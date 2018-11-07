@@ -85,7 +85,7 @@ pipeline
                                steps {
                                       echo 'Open Needed Ports'
 				      script {
-	docker.withRegistry('572393830386.dkr.ecr.ap-south-1.amazonaws.com', 'ecr:ap-south-1:dbd7ec62-521a-4f93-9a02-debe363d7ba1')                        {
+	docker.withRegistry('https://572393830386.dkr.ecr.ap-south-1.amazonaws.com', 'ecr:ap-south-1:dbd7ec62-521a-4f93-9a02-debe363d7ba1')                        {
                       bat 'docker push 572393830386.dkr.ecr.ap-south-1.amazonaws.com/docker1'
                    }
                                      } }
