@@ -1,32 +1,97 @@
 pipeline 
 {
-  agent docker
-       {
-       image 'maven:3-alpine'
-       }	  
+  agent any
+	  
 
+  stages {
+           stage('Checkout') {
+                               steps {
+                                      echo 'In checkout2'
+                                     }
+                             }
 
-     stages {
-        stage('Build') {
-            steps {
-                bat 'mvn -B'
-                  }
-                       }
-            }
+           stage('Build')    {
+                               steps {
+                                      echo 'In build'
+                                      withMaven( maven: 'Maven12') 
+                                     {
+                                      bat 'mvn clean install'
+                                     }
+                                     
+				      
+                                     }
+                             }
 
+           stage('Unit testing')    {
+                               steps {
+                                      echo 'In Unit testing'
+                                      withMaven( maven: 'Maven12') 
+                                     {
+                                      bat 'mvn test-compile test'
+                                     }
+                                     }
+                             }
+
+           stage('Sonar Analysis')    {
+                               steps {
+                                      echo 'In Sonar Analysis'
+				      withSonarQubeEnv('MySonar-Server')
+				      {
+				      bat 'mvn sonar:sonar'
+ 				      }
+                                     }
+                             }
+	  stage("Quality Gate") {
+                              steps {
+                                       timeout(time: 1, unit: 'HOURS') {
+                                       waitForQualityGate abortPipeline: true
+                                    }
+                                }
+                               }
+
+           stage('Release App Artifactory')    {
+                               steps {
+                                      echo 'In Release App Artifactory'
+				      script 
+				      {
+ 
+                                          def server = Artifactory.server('Artifactory-server')              
+                                          def uploadSpec = """{
+                                                                 "files": [
+    					                               {
+                                                                         "pattern": "target/*.jar",
+                                                                         "target": "example-repo-local/devopsappl"
+                                                                       }
+                                                                          ]
+                                                              }"""
+			      
+				                              server.upload(uploadSpec)
+				      }
+
+                                     }
+                             }
+
+           stage('Build Docker Image')    {
+                                                                                  
+                                           steps {
+                                                   echo 'In Build Docker Image'
+                                                   bat 'docker build -t webserver .'
+                                            
+                                                 }
+                                          }
 
            stage('ECS Deployment')    {
                                steps {
                                       echo 'In ECS Deployment'
-                                      }
                                      }
+                             }
 
            stage('Open Needed Ports')    {
                                steps {
                                       echo 'Open Needed Ports'
                                      }
-                                         }
+                             }
      
                              
-         
+         }
 }
